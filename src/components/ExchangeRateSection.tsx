@@ -1,6 +1,8 @@
 
 import { useState, useEffect } from "react";
 import { DollarSignIcon, AlertCircle } from "lucide-react";
+import { formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 interface CachedData {
   rate: number;
@@ -37,12 +39,16 @@ const ExchangeRateSection = () => {
     return now - cached.timestamp >= UPDATE_INTERVAL;
   };
 
+  const formatTimeAgo = (timestamp: number): string => {
+    return formatDistanceToNow(timestamp, { addSuffix: true, locale: ptBR });
+  };
+
   const fetchExchangeRate = async () => {
     if (!shouldUpdate()) {
       const cached = getCachedData();
       if (cached) {
         setRate(cached.rate);
-        setLastUpdate(new Date(cached.timestamp).toLocaleString());
+        setLastUpdate(formatTimeAgo(cached.timestamp));
         return;
       }
     }
@@ -58,8 +64,8 @@ const ExchangeRateSection = () => {
       
       const data = await response.json();
       setRate(data.rates.BRL);
-      const now = new Date();
-      setLastUpdate(now.toLocaleString());
+      const now = Date.now();
+      setLastUpdate(formatTimeAgo(now));
       setCachedData(data.rates.BRL);
     } catch (err) {
       setError("Erro ao atualizar cotação");
@@ -76,7 +82,18 @@ const ExchangeRateSection = () => {
       fetchExchangeRate();
     }, UPDATE_INTERVAL);
 
-    return () => clearInterval(interval);
+    // Atualiza o tempo relativo a cada minuto
+    const timeAgoInterval = setInterval(() => {
+      const cached = getCachedData();
+      if (cached) {
+        setLastUpdate(formatTimeAgo(cached.timestamp));
+      }
+    }, 60000);
+
+    return () => {
+      clearInterval(interval);
+      clearInterval(timeAgoInterval);
+    };
   }, []);
 
   return (
@@ -101,7 +118,7 @@ const ExchangeRateSection = () => {
       
       {lastUpdate && !error && (
         <div className="text-xs text-gray-400 mt-1">
-          Atualizado: {lastUpdate}
+          Atualizado {lastUpdate}
         </div>
       )}
     </div>
