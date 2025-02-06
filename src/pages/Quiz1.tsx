@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
@@ -43,8 +42,42 @@ const Quiz1 = () => {
     nome: "",
     email: "",
     telefone: "",
-    codigoPais: "+1", // USA default
+    codigoPais: "+1",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState("");
+  const [showResults, setShowResults] = useState(false);
+
+  const loadingMessages = [
+    "Analisando suas respostas...",
+    "Personalizando seu perfil financeiro...",
+    "Preparando recomendações específicas...",
+    "Finalizando sua análise..."
+  ];
+
+  useEffect(() => {
+    let currentMessageIndex = 0;
+    let timer: NodeJS.Timeout;
+
+    if (isLoading) {
+      const showNextMessage = () => {
+        if (currentMessageIndex < loadingMessages.length) {
+          setLoadingMessage(loadingMessages[currentMessageIndex]);
+          currentMessageIndex++;
+          timer = setTimeout(showNextMessage, 1500);
+        } else {
+          setIsLoading(false);
+          setShowResults(true);
+        }
+      };
+
+      showNextMessage();
+    }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [isLoading]);
 
   const calculateProfile = (answers: QuizAnswer): ProfileResult => {
     // Iniciante nos EUA
@@ -133,6 +166,12 @@ const Quiz1 = () => {
     }));
   };
 
+  const handleUserDataSubmit = () => {
+    if (userData.nome && userData.email && userData.telefone) {
+      setIsLoading(true);
+    }
+  };
+
   const renderQuestion = (
     title: string,
     options: string[],
@@ -157,6 +196,67 @@ const Quiz1 = () => {
       </RadioGroup>
     </div>
   );
+
+  const renderLoadingState = () => (
+    <div className="space-y-8 animate-fadeIn max-w-2xl mx-auto w-full px-4 text-center">
+      <div className="flex flex-col items-center justify-center min-h-[400px] space-y-8">
+        <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+        <h2 className="text-2xl font-bold text-white animate-pulse">
+          {loadingMessage}
+        </h2>
+      </div>
+    </div>
+  );
+
+  const renderResults = () => {
+    const profile = calculateProfile(answers);
+    return (
+      <div className="space-y-8 animate-fadeIn max-w-2xl mx-auto w-full px-4">
+        <h2 className="text-4xl font-bold text-white mb-4">{profile.title}</h2>
+        <p className="text-xl text-gray-300 mb-8">{profile.description}</p>
+        
+        <div className="space-y-6">
+          <h3 className="text-2xl font-semibold text-white mb-4">Recomendações para você:</h3>
+          <ul className="space-y-4">
+            {profile.recommendations.map((rec, index) => (
+              <li 
+                key={index}
+                className="flex items-start gap-3 bg-secondary/30 p-4 rounded-lg"
+              >
+                <span className="text-lg text-gray-200">{rec}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12 bg-primary/10 p-6 rounded-lg border border-primary/20">
+          <h3 className="text-2xl font-bold text-primary mb-4">
+            Conheça a MonkeyMoney
+          </h3>
+          <p className="text-gray-300 mb-6">
+            A conta digital perfeita para brasileiros nos EUA. Simplifique sua vida financeira e aproveite benefícios exclusivos:
+          </p>
+          <ul className="space-y-3 mb-6">
+            <li className="flex items-center gap-2 text-gray-200">
+              ✓ Conta sem taxas mensais
+            </li>
+            <li className="flex items-center gap-2 text-gray-200">
+              ✓ Transferências internacionais com as melhores taxas
+            </li>
+            <li className="flex items-center gap-2 text-gray-200">
+              ✓ Cartão de débito aceito em todo os EUA
+            </li>
+            <li className="flex items-center gap-2 text-gray-200">
+              ✓ Suporte em português 24/7
+            </li>
+          </ul>
+          <Button className="w-full md:w-auto" size="lg">
+            Criar minha conta MonkeyMoney
+          </Button>
+        </div>
+      </div>
+    );
+  };
 
   const renderUserDataForm = () => (
     <div className="space-y-8 animate-fadeIn max-w-2xl mx-auto w-full px-4">
@@ -217,30 +317,15 @@ const Quiz1 = () => {
     </div>
   );
 
-  const renderResults = () => {
-    const profile = calculateProfile(answers);
-    return (
-      <div className="space-y-8 animate-fadeIn max-w-2xl mx-auto w-full px-4">
-        <h2 className="text-4xl font-bold text-white mb-4">{profile.title}</h2>
-        <p className="text-xl text-gray-300 mb-8">{profile.description}</p>
-        <div className="space-y-4">
-          <h3 className="text-2xl font-semibold text-white mb-4">Recomendações para você:</h3>
-          <ul className="space-y-4">
-            {profile.recommendations.map((rec, index) => (
-              <li 
-                key={index}
-                className="flex items-start gap-3 bg-secondary/30 p-4 rounded-lg"
-              >
-                <span className="text-lg text-gray-200">{rec}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    );
-  };
-
   const renderStep = () => {
+    if (isLoading) {
+      return renderLoadingState();
+    }
+
+    if (showResults) {
+      return renderResults();
+    }
+
     switch (currentStep) {
       case 0:
         return (
@@ -322,8 +407,6 @@ const Quiz1 = () => {
         );
       case 6:
         return renderUserDataForm();
-      case 7:
-        return renderResults();
       default:
         return null;
     }
@@ -335,7 +418,7 @@ const Quiz1 = () => {
   return (
     <div className="min-h-screen bg-[#171717]">
       <main className="container mx-auto px-4 pt-24 pb-16">
-        {currentStep > 0 && (
+        {currentStep > 0 && !isLoading && !showResults && (
           <div className="max-w-2xl mx-auto mb-8">
             <Progress 
               value={(currentStep / (totalSteps - 1)) * 100} 
@@ -345,7 +428,7 @@ const Quiz1 = () => {
         )}
         <div className="animate-fadeIn">
           {renderStep()}
-          {currentStep > 0 && !isLastStep && (
+          {currentStep > 0 && !isLoading && !showResults && !isLastStep && (
             <div className="flex justify-center gap-4 mt-12">
               <Button
                 variant="secondary"
@@ -355,14 +438,25 @@ const Quiz1 = () => {
                 <ArrowLeft className="mr-2" />
                 Voltar
               </Button>
-              <Button
-                onClick={handleNext}
-                disabled={!canProceed}
-                className="animate-fadeIn"
-              >
-                Próxima
-                <ArrowRight className="ml-2" />
-              </Button>
+              {currentStep === 6 ? (
+                <Button
+                  onClick={handleUserDataSubmit}
+                  disabled={!userData.nome || !userData.email || !userData.telefone}
+                  className="animate-fadeIn"
+                >
+                  Ver Resultados
+                  <ArrowRight className="ml-2" />
+                </Button>
+              ) : (
+                <Button
+                  onClick={handleNext}
+                  disabled={!canProceed}
+                  className="animate-fadeIn"
+                >
+                  Próxima
+                  <ArrowRight className="ml-2" />
+                </Button>
+              )}
             </div>
           )}
         </div>
@@ -372,4 +466,3 @@ const Quiz1 = () => {
 };
 
 export default Quiz1;
-
