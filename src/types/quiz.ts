@@ -4,6 +4,7 @@ export interface QuizAnswer {
   objetivoFinanceiro: string;
   fonteRenda: string;
   appsFinanceiros: string;
+  dificuldades: string;
 }
 
 export interface UserData {
