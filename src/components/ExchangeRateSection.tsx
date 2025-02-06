@@ -2,13 +2,51 @@
 import { useState, useEffect } from "react";
 import { DollarSignIcon, AlertCircle } from "lucide-react";
 
+interface CachedData {
+  rate: number;
+  timestamp: number;
+}
+
+const CACHE_KEY = 'exchange_rate_cache';
+const UPDATE_INTERVAL = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
+
 const ExchangeRateSection = () => {
   const [rate, setRate] = useState<number | null>(null);
   const [lastUpdate, setLastUpdate] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  const getCachedData = (): CachedData | null => {
+    const cached = localStorage.getItem(CACHE_KEY);
+    return cached ? JSON.parse(cached) : null;
+  };
+
+  const setCachedData = (rate: number) => {
+    const data: CachedData = {
+      rate,
+      timestamp: Date.now(),
+    };
+    localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+  };
+
+  const shouldUpdate = (): boolean => {
+    const cached = getCachedData();
+    if (!cached) return true;
+    
+    const now = Date.now();
+    return now - cached.timestamp >= UPDATE_INTERVAL;
+  };
+
   const fetchExchangeRate = async () => {
+    if (!shouldUpdate()) {
+      const cached = getCachedData();
+      if (cached) {
+        setRate(cached.rate);
+        setLastUpdate(new Date(cached.timestamp).toLocaleString());
+        return;
+      }
+    }
+
     try {
       setLoading(true);
       setError(null);
@@ -20,7 +58,9 @@ const ExchangeRateSection = () => {
       
       const data = await response.json();
       setRate(data.rates.BRL);
-      setLastUpdate(new Date().toLocaleTimeString());
+      const now = new Date();
+      setLastUpdate(now.toLocaleString());
+      setCachedData(data.rates.BRL);
     } catch (err) {
       setError("Erro ao atualizar cotação");
       console.error("Exchange rate fetch error:", err);
@@ -34,7 +74,7 @@ const ExchangeRateSection = () => {
     
     const interval = setInterval(() => {
       fetchExchangeRate();
-    }, 60000); // Atualiza a cada 1 minuto
+    }, UPDATE_INTERVAL);
 
     return () => clearInterval(interval);
   }, []);
