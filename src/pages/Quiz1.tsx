@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -194,12 +195,12 @@ const Quiz1 = () => {
               <SelectTrigger className="w-[100px] bg-secondary/50 text-white">
                 <SelectValue placeholder="País" />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="+1">🇺🇸 +1</SelectItem>
-                <SelectItem value="+55">🇧🇷 +55</SelectItem>
-                <SelectItem value="+44">🇬🇧 +44</SelectItem>
-                <SelectItem value="+351">🇵🇹 +351</SelectItem>
-                <SelectItem value="+34">🇪🇸 +34</SelectItem>
+              <SelectContent className="bg-white border border-gray-200">
+                <SelectItem value="+1" className="text-gray-900 hover:bg-gray-100">🇺🇸 +1</SelectItem>
+                <SelectItem value="+55" className="text-gray-900 hover:bg-gray-100">🇧🇷 +55</SelectItem>
+                <SelectItem value="+44" className="text-gray-900 hover:bg-gray-100">🇬🇧 +44</SelectItem>
+                <SelectItem value="+351" className="text-gray-900 hover:bg-gray-100">🇵🇹 +351</SelectItem>
+                <SelectItem value="+34" className="text-gray-900 hover:bg-gray-100">🇪🇸 +34</SelectItem>
               </SelectContent>
             </Select>
             <Input
@@ -371,3 +372,4 @@ const Quiz1 = () => {
 };
 
 export default Quiz1;
+
