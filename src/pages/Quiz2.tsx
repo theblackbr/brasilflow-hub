@@ -1,11 +1,12 @@
 
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { QuizQuestion } from "@/components/quiz/QuizQuestion";
 import { UserDataForm } from "@/components/quiz/UserDataForm";
 import { QuizResults } from "@/components/quiz/QuizResults";
+import { WelcomeScreen } from "@/components/quiz/WelcomeScreen";
+import { LoadingScreen } from "@/components/quiz/LoadingScreen";
+import { NavigationButtons } from "@/components/quiz/NavigationButtons";
 import { QuizAnswer, UserData } from "@/types/quiz";
 import { calculateProfile } from "@/utils/profileCalculator";
 
@@ -96,20 +97,9 @@ const Quiz2 = () => {
     }
   };
 
-  const renderLoadingState = () => (
-    <div className="space-y-8 animate-fadeIn max-w-2xl mx-auto w-full px-4 text-center">
-      <div className="flex flex-col items-center justify-center min-h-[400px] space-y-8">
-        <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-        <h2 className="text-2xl font-bold text-gray-800 animate-pulse">
-          {loadingMessage}
-        </h2>
-      </div>
-    </div>
-  );
-
   const renderStep = () => {
     if (isLoading) {
-      return renderLoadingState();
+      return <LoadingScreen message={loadingMessage} />;
     }
 
     if (showResults) {
@@ -118,24 +108,7 @@ const Quiz2 = () => {
 
     switch (currentStep) {
       case 0:
-        return (
-          <div className="max-w-2xl mx-auto w-full px-4 text-center animate-fadeIn">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-              Qual é o seu Perfil Financeiro nos EUA?
-            </h1>
-            <p className="text-xl text-gray-600 mb-8">
-              Descubra, em poucos minutos, como você lida com dinheiro nos EUA e receba recomendações personalizadas para melhorar sua vida financeira.
-            </p>
-            <Button 
-              className="animate-fadeIn"
-              size="lg"
-              onClick={handleNext}
-            >
-              Iniciar o Quiz
-              <ArrowRight className="ml-2" />
-            </Button>
-          </div>
-        );
+        return <WelcomeScreen onNext={handleNext} />;
       case 1:
         return (
           <QuizQuestion
@@ -239,35 +212,14 @@ const Quiz2 = () => {
         <div className="animate-fadeIn">
           {renderStep()}
           {currentStep > 0 && !isLoading && !showResults && !isLastStep && (
-            <div className="flex justify-center gap-4 mt-12">
-              <Button
-                variant="secondary"
-                onClick={handleBack}
-                className="animate-fadeIn text-white"
-              >
-                <ArrowLeft className="mr-2" />
-                Voltar
-              </Button>
-              {currentStep === 6 ? (
-                <Button
-                  onClick={handleUserDataSubmit}
-                  disabled={!userData.nome || !userData.email || !userData.telefone}
-                  className="animate-fadeIn"
-                >
-                  Ver Resultados
-                  <ArrowRight className="ml-2" />
-                </Button>
-              ) : (
-                <Button
-                  onClick={handleNext}
-                  disabled={!canProceed}
-                  className="animate-fadeIn"
-                >
-                  Próxima
-                  <ArrowRight className="ml-2" />
-                </Button>
-              )}
-            </div>
+            <NavigationButtons
+              onBack={handleBack}
+              onNext={handleNext}
+              onSubmit={handleUserDataSubmit}
+              isLastStep={currentStep === 6}
+              canProceed={canProceed}
+              isDataComplete={userData.nome && userData.email && userData.telefone}
+            />
           )}
         </div>
       </main>
