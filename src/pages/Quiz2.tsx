@@ -12,7 +12,7 @@ import { calculateProfile } from "@/utils/profileCalculator";
 
 const Quiz2 = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const totalSteps = 6; // Reduced from 7 to 6 steps
+  const totalSteps = 6;
   const [answers, setAnswers] = useState<QuizAnswer>({
     tempoEUA: "",
     objetivoFinanceiro: "",
@@ -78,7 +78,7 @@ const Quiz2 = () => {
       [question]: value
     }));
     
-    if (currentStep > 0 && currentStep < 4) {
+    if (currentStep > 0 && currentStep <= 4) {
       handleNext();
     }
   };
