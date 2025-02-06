@@ -60,7 +60,7 @@ export const QuizResults = ({ profile, userData }: QuizResultsProps) => (
       </div>
       
       <h3 className="text-2xl font-bold text-gray-800">
-        Comece agora sua jornada financeira nos EUA!
+        Abra sua conta digital MonkeyMoney e comece sua jornada financeira nos EUA!
       </h3>
 
       <motion.div 
