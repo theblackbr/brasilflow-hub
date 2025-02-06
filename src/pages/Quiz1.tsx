@@ -114,6 +114,11 @@ const Quiz1 = () => {
       ...prev,
       [question]: value
     }));
+    
+    // Auto-advance for single choice questions
+    if (currentStep > 0 && currentStep <= 5) {
+      handleNext();
+    }
   };
 
   const handleUserDataChange = (field: keyof UserData, value: string) => {
@@ -128,7 +133,7 @@ const Quiz1 = () => {
     options: string[],
     questionKey: keyof QuizAnswer
   ) => (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-2xl mx-auto w-full px-4">
       <h2 className="text-3xl font-bold text-white mb-8">{title}</h2>
       <RadioGroup
         value={answers[questionKey]}
@@ -149,7 +154,7 @@ const Quiz1 = () => {
   );
 
   const renderUserDataForm = () => (
-    <div className="space-y-8 animate-fadeIn">
+    <div className="space-y-8 animate-fadeIn max-w-2xl mx-auto w-full px-4">
       <h2 className="text-3xl font-bold text-white mb-8">
         Receba suas recomendações por email
       </h2>
@@ -182,7 +187,7 @@ const Quiz1 = () => {
   const renderResults = () => {
     const profile = calculateProfile(answers);
     return (
-      <div className="space-y-8 animate-fadeIn">
+      <div className="space-y-8 animate-fadeIn max-w-2xl mx-auto w-full px-4">
         <h2 className="text-4xl font-bold text-white mb-4">{profile.title}</h2>
         <p className="text-xl text-gray-300 mb-8">{profile.description}</p>
         <div className="space-y-4">
@@ -206,7 +211,7 @@ const Quiz1 = () => {
     switch (currentStep) {
       case 0:
         return (
-          <div className="max-w-3xl mx-auto text-center animate-fadeIn">
+          <div className="max-w-2xl mx-auto w-full px-4 text-center animate-fadeIn">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Qual é o seu Perfil Financeiro nos EUA?
             </h1>
@@ -298,7 +303,7 @@ const Quiz1 = () => {
     <div className="min-h-screen bg-[#171717]">
       <main className="container mx-auto px-4 pt-24 pb-16">
         {currentStep > 0 && (
-          <div className="max-w-3xl mx-auto mb-8">
+          <div className="max-w-2xl mx-auto mb-8">
             <Progress 
               value={(currentStep / (totalSteps - 1)) * 100} 
               className="animate-fadeIn"
