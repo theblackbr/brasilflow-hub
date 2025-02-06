@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -113,7 +112,7 @@ const Quiz1 = () => {
     }
 
     if (showResults) {
-      return <QuizResults profile={calculateProfile(answers)} />;
+      return <QuizResults profile={calculateProfile(answers)} userData={userData} />;
     }
 
     switch (currentStep) {
