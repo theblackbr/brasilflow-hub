@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -6,6 +5,7 @@ import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface QuizAnswer {
   tempoEUA: string;
@@ -18,6 +18,8 @@ interface QuizAnswer {
 interface UserData {
   nome: string;
   email: string;
+  telefone: string;
+  codigoPais: string;
 }
 
 interface ProfileResult {
@@ -28,7 +30,7 @@ interface ProfileResult {
 
 const Quiz1 = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const totalSteps = 8; // 5 perguntas + tela inicial + formulário + resultado
+  const totalSteps = 8;
   const [answers, setAnswers] = useState<QuizAnswer>({
     tempoEUA: "",
     objetivoFinanceiro: "",
@@ -39,6 +41,8 @@ const Quiz1 = () => {
   const [userData, setUserData] = useState<UserData>({
     nome: "",
     email: "",
+    telefone: "",
+    codigoPais: "+1", // USA default
   });
 
   const calculateProfile = (answers: QuizAnswer): ProfileResult => {
@@ -180,6 +184,34 @@ const Quiz1 = () => {
             className="bg-secondary/50 text-white placeholder:text-gray-400"
           />
         </div>
+        <div className="space-y-2">
+          <Label htmlFor="telefone" className="text-white">Telefone</Label>
+          <div className="flex gap-2">
+            <Select
+              value={userData.codigoPais}
+              onValueChange={(value) => handleUserDataChange("codigoPais", value)}
+            >
+              <SelectTrigger className="w-[100px] bg-secondary/50 text-white">
+                <SelectValue placeholder="País" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="+1">🇺🇸 +1</SelectItem>
+                <SelectItem value="+55">🇧🇷 +55</SelectItem>
+                <SelectItem value="+44">🇬🇧 +44</SelectItem>
+                <SelectItem value="+351">🇵🇹 +351</SelectItem>
+                <SelectItem value="+34">🇪🇸 +34</SelectItem>
+              </SelectContent>
+            </Select>
+            <Input
+              id="telefone"
+              type="tel"
+              value={userData.telefone}
+              onChange={(e) => handleUserDataChange("telefone", e.target.value)}
+              placeholder="(555) 123-4567"
+              className="flex-1 bg-secondary/50 text-white placeholder:text-gray-400"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -297,7 +329,7 @@ const Quiz1 = () => {
   };
 
   const isLastStep = currentStep === totalSteps - 1;
-  const canProceed = currentStep !== 6 || (userData.nome && userData.email);
+  const canProceed = currentStep !== 6 || (userData.nome && userData.email && userData.telefone);
 
   return (
     <div className="min-h-screen bg-[#171717]">
@@ -339,4 +371,3 @@ const Quiz1 = () => {
 };
 
 export default Quiz1;
-
