@@ -3,7 +3,7 @@ import { DollarSignIcon, GraduationCapIcon, BriefcaseIcon, User2Icon } from "luc
 
 const FeaturedGrid = () => {
   return (
-    <section className="py-16 px-4 bg-white">
+    <section className="py-16 px-4 bg-[#171717]">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <FeaturedCard
@@ -41,14 +41,14 @@ const FeaturedCard = ({
   title: string;
   description: string;
 }) => (
-  <div className="group p-6 bg-gray-50 border border-gray-200 rounded-xl hover:border-primary/50 transition-all duration-300">
+  <div className="group p-6 bg-[#171717]/50 backdrop-blur-lg border border-gray-800 rounded-xl hover:border-primary/50 transition-all duration-300">
     <div className="mb-4 p-3 w-fit rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-gray-900 transition-colors">
       {icon}
     </div>
-    <h3 className="mb-2 text-xl font-semibold text-gray-900 group-hover:text-primary transition-colors">
+    <h3 className="mb-2 text-xl font-semibold text-white group-hover:text-primary transition-colors">
       {title}
     </h3>
-    <p className="text-gray-600">{description}</p>
+    <p className="text-gray-400">{description}</p>
   </div>
 );
 
