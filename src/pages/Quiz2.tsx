@@ -186,7 +186,7 @@ const Quiz2 = () => {
         {currentStep > 0 && !isLoading && !showResults && (
           <div className="max-w-2xl mx-auto mb-8">
             <Progress 
-              value={(currentStep / (totalSteps - 1)) * 100} 
+              value={((currentStep - 1) / (totalSteps - 2)) * 100} 
               className="animate-fadeIn"
             />
           </div>
