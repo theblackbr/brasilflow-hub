@@ -13,6 +13,12 @@ export const WelcomeScreen = ({ onNext }: WelcomeScreenProps) => (
     animate={{ opacity: 1 }}
     className="max-w-2xl mx-auto w-full px-4 text-center animate-fadeIn"
   >
+    <div className="inline-block border-2 border-primary rounded-full px-4 py-1 mb-6">
+      <span className="text-sm font-medium text-gray-800">
+        Exclusivo para Brasileiro nos EUA
+      </span>
+    </div>
+
     <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
       Descubra a Melhor Solução Bancária para Você nos EUA
     </h1>
