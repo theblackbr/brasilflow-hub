@@ -12,7 +12,7 @@ import { calculateProfile } from "@/utils/profileCalculator";
 
 const Quiz2 = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const totalSteps = 8;
+  const totalSteps = 7; // Adjusted total steps
   const [answers, setAnswers] = useState<QuizAnswer>({
     tempoEUA: "",
     objetivoFinanceiro: "",
@@ -79,7 +79,7 @@ const Quiz2 = () => {
       [question]: value
     }));
     
-    if (currentStep > 0 && currentStep <= 5) {
+    if (currentStep > 0 && currentStep < 5) {
       handleNext();
     }
   };
@@ -163,6 +163,20 @@ const Quiz2 = () => {
             ]}
             value={answers.appsFinanceiros}
             onChange={(value) => handleAnswerChange("appsFinanceiros", value)}
+          />
+        );
+      case 5:
+        return (
+          <QuizQuestion
+            title="Como você gostaria de receber suporte?"
+            options={[
+              "Chat no aplicativo",
+              "WhatsApp",
+              "Email",
+              "Telefone"
+            ]}
+            value={answers.dificuldades}
+            onChange={(value) => handleAnswerChange("dificuldades", value)}
           />
         );
       case 6:
