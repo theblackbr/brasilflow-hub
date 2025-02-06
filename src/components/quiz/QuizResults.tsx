@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ProfileResult } from "@/types/quiz";
 import { motion } from "framer-motion";
 import { BadgeCheck, ArrowRight, CheckCircle } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 interface QuizResultsProps {
   profile: ProfileResult;
@@ -66,6 +67,20 @@ export const QuizResults = ({ profile }: QuizResultsProps) => (
       transition={{ delay: 0.5 }}
       className="mt-12 bg-gradient-to-br from-primary/5 to-primary/10 p-8 rounded-xl border border-primary/20"
     >
+      <div className="flex items-center gap-6 mb-6">
+        <img 
+          src="/lovable-uploads/a83934bc-d45b-47a7-ad8b-352d600d0927.png"
+          alt="MonkeyMoney Logo"
+          className="h-12"
+        />
+        <Avatar className="w-16 h-16">
+          <AvatarImage 
+            src="/lovable-uploads/b0f01726-d9cf-4b1f-8311-6b57c6ca5547.png"
+            alt="MonkeyMoney Mascot"
+          />
+          <AvatarFallback>MM</AvatarFallback>
+        </Avatar>
+      </div>
       <h3 className="text-2xl font-bold text-gray-800 mb-4">
         Conheça a MonkeyMoney
       </h3>
