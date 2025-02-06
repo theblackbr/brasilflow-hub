@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface QuizAnswer {
   tempoEUA: string;
@@ -11,6 +13,11 @@ interface QuizAnswer {
   fonteRenda: string;
   appsFinanceiros: string;
   dificuldades: string;
+}
+
+interface UserData {
+  nome: string;
+  email: string;
 }
 
 interface ProfileResult {
@@ -21,13 +28,17 @@ interface ProfileResult {
 
 const Quiz1 = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const totalSteps = 7; // 5 perguntas + tela inicial + tela de resultado
+  const totalSteps = 8; // 5 perguntas + tela inicial + formulário + resultado
   const [answers, setAnswers] = useState<QuizAnswer>({
     tempoEUA: "",
     objetivoFinanceiro: "",
     fonteRenda: "",
     appsFinanceiros: "",
     dificuldades: "",
+  });
+  const [userData, setUserData] = useState<UserData>({
+    nome: "",
+    email: "",
   });
 
   const calculateProfile = (answers: QuizAnswer): ProfileResult => {
@@ -105,6 +116,13 @@ const Quiz1 = () => {
     }));
   };
 
+  const handleUserDataChange = (field: keyof UserData, value: string) => {
+    setUserData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
   const renderQuestion = (
     title: string,
     options: string[],
@@ -127,6 +145,37 @@ const Quiz1 = () => {
           </label>
         ))}
       </RadioGroup>
+    </div>
+  );
+
+  const renderUserDataForm = () => (
+    <div className="space-y-8 animate-fadeIn">
+      <h2 className="text-3xl font-bold text-white mb-8">
+        Receba suas recomendações por email
+      </h2>
+      <div className="space-y-6 max-w-md mx-auto">
+        <div className="space-y-2">
+          <Label htmlFor="nome" className="text-white">Nome</Label>
+          <Input
+            id="nome"
+            value={userData.nome}
+            onChange={(e) => handleUserDataChange("nome", e.target.value)}
+            placeholder="Seu nome completo"
+            className="bg-secondary/50 text-white placeholder:text-gray-400"
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="email" className="text-white">Email</Label>
+          <Input
+            id="email"
+            type="email"
+            value={userData.email}
+            onChange={(e) => handleUserDataChange("email", e.target.value)}
+            placeholder="seu@email.com"
+            className="bg-secondary/50 text-white placeholder:text-gray-400"
+          />
+        </div>
+      </div>
     </div>
   );
 
@@ -234,6 +283,8 @@ const Quiz1 = () => {
           "dificuldades"
         );
       case 6:
+        return renderUserDataForm();
+      case 7:
         return renderResults();
       default:
         return null;
@@ -241,6 +292,7 @@ const Quiz1 = () => {
   };
 
   const isLastStep = currentStep === totalSteps - 1;
+  const canProceed = currentStep !== 6 || (userData.nome && userData.email);
 
   return (
     <div className="min-h-screen bg-[#171717]">
@@ -267,6 +319,7 @@ const Quiz1 = () => {
               </Button>
               <Button
                 onClick={handleNext}
+                disabled={!canProceed}
                 className="animate-fadeIn"
               >
                 Próxima
