@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -242,7 +243,7 @@ const Quiz1 = () => {
               <Button
                 variant="secondary"
                 onClick={handleBack}
-                className="animate-fadeIn"
+                className="animate-fadeIn text-white"
               >
                 <ArrowLeft className="mr-2" />
                 Voltar
