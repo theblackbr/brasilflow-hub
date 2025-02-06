@@ -32,8 +32,8 @@ const NewsSection = () => {
     <section className="py-16 bg-primary">
       <div className="container mx-auto px-4">
         <div className="flex items-center gap-2 mb-8">
-          <RssIcon className="w-6 h-6 text-[#F97316]" />
-          <h2 className="text-3xl font-bold text-[#222222]">Novidades</h2>
+          <RssIcon className="w-6 h-6 text-white" />
+          <h2 className="text-3xl font-bold text-white">Novidades</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {recentPosts.map((post, index) => (
@@ -49,7 +49,7 @@ const NewsSection = () => {
                 />
               </div>
               <CardContent className="p-6">
-                <span className="inline-block px-3 py-1 rounded-full text-sm font-medium bg-[#FEF7CD] text-[#F97316] mb-3">
+                <span className="inline-block px-3 py-1 rounded-full text-sm font-medium bg-[#FFC107] text-[#171717] mb-3">
                   {post.category}
                 </span>
                 <h3 className="text-xl font-semibold text-[#222222] mb-2 line-clamp-2">
@@ -58,7 +58,7 @@ const NewsSection = () => {
                 <span className="text-sm text-gray-600 block mb-4">{post.date}</span>
                 <Button 
                   variant="ghost" 
-                  className="group/btn text-[#F97316] hover:text-[#F97316] hover:bg-[#FEF7CD]"
+                  className="group/btn text-[#171717] hover:text-[#171717] hover:bg-[#FFC107]"
                 >
                   Ler mais
                   <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover/btn:translate-x-1" />
