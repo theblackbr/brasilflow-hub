@@ -12,13 +12,12 @@ import { calculateProfile } from "@/utils/profileCalculator";
 
 const Quiz2 = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const totalSteps = 7; // Adjusted total steps
+  const totalSteps = 6; // Reduced from 7 to 6 steps
   const [answers, setAnswers] = useState<QuizAnswer>({
     tempoEUA: "",
     objetivoFinanceiro: "",
     fonteRenda: "",
     appsFinanceiros: "",
-    dificuldades: "",
   });
   const [userData, setUserData] = useState<UserData>({
     nome: "",
@@ -79,7 +78,7 @@ const Quiz2 = () => {
       [question]: value
     }));
     
-    if (currentStep > 0 && currentStep < 5) {
+    if (currentStep > 0 && currentStep < 4) {
       handleNext();
     }
   };
@@ -167,20 +166,6 @@ const Quiz2 = () => {
         );
       case 5:
         return (
-          <QuizQuestion
-            title="Como você gostaria de receber suporte?"
-            options={[
-              "Chat no aplicativo",
-              "WhatsApp",
-              "Email",
-              "Telefone"
-            ]}
-            value={answers.dificuldades}
-            onChange={(value) => handleAnswerChange("dificuldades", value)}
-          />
-        );
-      case 6:
-        return (
           <UserDataForm
             userData={userData}
             onDataChange={handleUserDataChange}
@@ -192,7 +177,7 @@ const Quiz2 = () => {
   };
 
   const isLastStep = currentStep === totalSteps - 1;
-  const canProceed = currentStep !== 6 || Boolean(userData.nome && userData.email && userData.telefone);
+  const canProceed = currentStep !== 5 || Boolean(userData.nome && userData.email && userData.telefone);
   const isDataComplete = Boolean(userData.nome && userData.email && userData.telefone);
 
   return (
