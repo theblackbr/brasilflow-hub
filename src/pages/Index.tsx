@@ -3,6 +3,9 @@ import NavigationHeader from "@/components/NavigationHeader";
 import HeroSection from "@/components/HeroSection";
 import FeaturedGrid from "@/components/FeaturedGrid";
 import NewsletterSection from "@/components/NewsletterSection";
+import NewsSection from "@/components/NewsSection";
+import SponsorsSection from "@/components/SponsorsSection";
+import ExchangeRateSection from "@/components/ExchangeRateSection";
 
 const Index = () => {
   return (
@@ -11,7 +14,10 @@ const Index = () => {
       <main>
         <HeroSection />
         <FeaturedGrid />
+        <NewsSection />
+        <SponsorsSection />
         <NewsletterSection />
+        <ExchangeRateSection />
       </main>
     </div>
   );
