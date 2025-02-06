@@ -41,7 +41,7 @@ const FeaturedCard = ({
   title: string;
   description: string;
 }) => (
-  <div className="group p-6 bg-secondary/50 backdrop-blur-lg border border-gray-800 rounded-xl hover:border-primary/50 transition-all duration-300">
+  <div className="group p-6 bg-[#171717]/50 backdrop-blur-lg border border-gray-800 rounded-xl hover:border-primary/50 transition-all duration-300">
     <div className="mb-4 p-3 w-fit rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-gray-900 transition-colors">
       {icon}
     </div>
