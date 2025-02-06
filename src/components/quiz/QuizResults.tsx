@@ -62,6 +62,36 @@ export const QuizResults = ({ profile, userData }: QuizResultsProps) => (
       <h3 className="text-2xl font-bold text-gray-800">
         Comece agora sua jornada financeira nos EUA!
       </h3>
+
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="space-y-4"
+      >
+        <h4 className="text-xl font-semibold text-gray-700 mb-4">
+          Benefícios exclusivos da sua conta digital:
+        </h4>
+        <ul className="space-y-4">
+          {[
+            'Conta sem taxas mensais',
+            'Transferências internacionais com as melhores taxas',
+            'Cartão de débito aceito em todo os EUA',
+            'Suporte em português 24/7'
+          ].map((benefit, index) => (
+            <motion.li 
+              key={index}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.7 + (index * 0.1) }}
+              className="flex items-center gap-3 text-gray-700"
+            >
+              <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+              {benefit}
+            </motion.li>
+          ))}
+        </ul>
+      </motion.div>
       
       <Button className="w-full md:w-auto group text-lg" size="lg">
         Criar minha conta MonkeyMoney
@@ -98,36 +128,6 @@ export const QuizResults = ({ profile, userData }: QuizResultsProps) => (
           >
             <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
             <span className="text-lg text-gray-700">{rec}</span>
-          </motion.li>
-        ))}
-      </ul>
-    </motion.div>
-
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.5 }}
-      className="space-y-4"
-    >
-      <h3 className="text-2xl font-bold text-gray-800 mb-4">
-        Benefícios exclusivos da sua conta digital:
-      </h3>
-      <ul className="space-y-4">
-        {[
-          'Conta sem taxas mensais',
-          'Transferências internacionais com as melhores taxas',
-          'Cartão de débito aceito em todo os EUA',
-          'Suporte em português 24/7'
-        ].map((benefit, index) => (
-          <motion.li 
-            key={index}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.7 + (index * 0.1) }}
-            className="flex items-center gap-3 text-gray-700"
-          >
-            <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-            {benefit}
           </motion.li>
         ))}
       </ul>
