@@ -16,13 +16,13 @@ const NewsletterSection = () => {
   };
 
   return (
-    <section className="py-16 px-4 bg-[#171717]">
+    <section className="py-16 px-4 bg-white">
       <div className="container mx-auto">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="mb-4 text-3xl font-bold text-white">
+          <h2 className="mb-4 text-3xl font-bold text-gray-900">
             Fique por dentro das novidades
           </h2>
-          <p className="mb-8 text-gray-400">
+          <p className="mb-8 text-gray-600">
             Receba as últimas notícias e atualizações diretamente no seu email
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
@@ -31,7 +31,7 @@ const NewsletterSection = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Seu melhor email"
-              className="flex-1 px-4 py-3 bg-secondary/50 border border-gray-800 rounded-lg text-white placeholder:text-gray-500 focus:outline-none focus:border-primary"
+              className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-primary"
               required
             />
             <button

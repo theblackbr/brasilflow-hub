@@ -10,17 +10,17 @@ const SponsorsSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-[#222222]">
+    <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center gap-2 mb-8">
           <BadgeIcon className="w-6 h-6 text-primary" />
-          <h2 className="text-3xl font-bold text-white">Mantenedores</h2>
+          <h2 className="text-3xl font-bold text-gray-900">Mantenedores</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {sponsors.map((sponsor, index) => (
             <div
               key={index}
-              className="bg-[#2A2A2A] p-6 rounded-lg border border-gray-800 hover:border-primary transition-all duration-300"
+              className="bg-white p-6 rounded-lg border border-gray-200 hover:border-primary transition-all duration-300"
             >
               <div className="bg-white p-4 rounded-lg mb-4">
                 <img
