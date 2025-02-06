@@ -126,13 +126,12 @@ const Quiz2 = () => {
       case 2:
         return (
           <QuizQuestion
-            title="Qual é seu principal objetivo financeiro nos EUA?"
+            title="Qual serviço financeiro mais interessa você?"
             options={[
-              "Construir crédito",
-              "Investir em ações",
-              "Comprar uma casa",
-              "Abrir um negócio",
-              "Enviar dinheiro para o Brasil"
+              "Cashback em compras",
+              "Remessa internacional",
+              "Transferências gratuitas nos EUA",
+              "Cartão de crédito/débito"
             ]}
             value={answers.objetivoFinanceiro}
             onChange={(value) => handleAnswerChange("objetivoFinanceiro", value)}
@@ -141,13 +140,12 @@ const Quiz2 = () => {
       case 3:
         return (
           <QuizQuestion
-            title="Qual sua principal fonte de renda?"
+            title="Você tem empresa nos EUA?"
             options={[
-              "Emprego formal (CLT)",
-              "Trabalho autônomo",
-              "Empresário",
-              "Investimentos",
-              "Múltiplas fontes"
+              "Sim, tenho uma LLC",
+              "Sim, tenho outra estrutura",
+              "Não, mas pretendo abrir",
+              "Não tenho interesse"
             ]}
             value={answers.fonteRenda}
             onChange={(value) => handleAnswerChange("fonteRenda", value)}
@@ -156,31 +154,15 @@ const Quiz2 = () => {
       case 4:
         return (
           <QuizQuestion
-            title="Quais apps financeiros você mais usa?"
+            title="Qual diferencial é mais importante para você?"
             options={[
-              "Apenas banco tradicional",
-              "Wise/Remessa Online",
-              "Robinhood/TD Ameritrade",
-              "Cash App/Venmo",
-              "Vários apps diferentes"
+              "Atendimento em português 24/7",
+              "Abertura de conta simplificada",
+              "Tudo em um só aplicativo",
+              "Taxas competitivas"
             ]}
             value={answers.appsFinanceiros}
             onChange={(value) => handleAnswerChange("appsFinanceiros", value)}
-          />
-        );
-      case 5:
-        return (
-          <QuizQuestion
-            title="Qual sua maior dificuldade financeira nos EUA?"
-            options={[
-              "Entender o sistema de crédito",
-              "Fazer investimentos",
-              "Declarar impostos",
-              "Enviar dinheiro internacional",
-              "Organizar o orçamento"
-            ]}
-            value={answers.dificuldades}
-            onChange={(value) => handleAnswerChange("dificuldades", value)}
           />
         );
       case 6:
@@ -196,7 +178,8 @@ const Quiz2 = () => {
   };
 
   const isLastStep = currentStep === totalSteps - 1;
-  const canProceed = currentStep !== 6 || (userData.nome && userData.email && userData.telefone);
+  const canProceed = currentStep !== 6 || Boolean(userData.nome && userData.email && userData.telefone);
+  const isDataComplete = Boolean(userData.nome && userData.email && userData.telefone);
 
   return (
     <div className="min-h-screen bg-white">
@@ -218,7 +201,7 @@ const Quiz2 = () => {
               onSubmit={handleUserDataSubmit}
               isLastStep={currentStep === 6}
               canProceed={canProceed}
-              isDataComplete={userData.nome && userData.email && userData.telefone}
+              isDataComplete={isDataComplete}
             />
           )}
         </div>
