@@ -30,24 +30,24 @@ export default {
           foreground: "#171717",
         },
         secondary: {
-          DEFAULT: "#2A2A2A",
-          foreground: "#FFFFFF",
+          DEFAULT: "#F3F4F6",
+          foreground: "#111827",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
-          DEFAULT: "#2A2A2A",
-          foreground: "#A1A1A1",
+          DEFAULT: "#F3F4F6",
+          foreground: "#6B7280",
         },
         accent: {
           DEFAULT: "#FFC107",
           foreground: "#171717",
         },
         card: {
-          DEFAULT: "#1A1A1A",
-          foreground: "#FFFFFF",
+          DEFAULT: "#FFFFFF",
+          foreground: "#111827",
         },
       },
       borderRadius: {

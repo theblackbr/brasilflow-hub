@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -100,7 +99,7 @@ const Quiz1 = () => {
     <div className="space-y-8 animate-fadeIn max-w-2xl mx-auto w-full px-4 text-center">
       <div className="flex flex-col items-center justify-center min-h-[400px] space-y-8">
         <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-        <h2 className="text-2xl font-bold text-white animate-pulse">
+        <h2 className="text-2xl font-bold text-gray-800 animate-pulse">
           {loadingMessage}
         </h2>
       </div>
@@ -120,10 +119,10 @@ const Quiz1 = () => {
       case 0:
         return (
           <div className="max-w-2xl mx-auto w-full px-4 text-center animate-fadeIn">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
               Qual é o seu Perfil Financeiro nos EUA?
             </h1>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-xl text-gray-600 mb-8">
               Descubra, em poucos minutos, como você lida com dinheiro nos EUA e receba recomendações personalizadas para melhorar sua vida financeira.
             </p>
             <Button 
@@ -226,7 +225,7 @@ const Quiz1 = () => {
   const canProceed = currentStep !== 6 || (userData.nome && userData.email && userData.telefone);
 
   return (
-    <div className="min-h-screen bg-[#171717]">
+    <div className="min-h-screen bg-white">
       <main className="container mx-auto px-4 pt-24 pb-16">
         {currentStep > 0 && !isLoading && !showResults && (
           <div className="max-w-2xl mx-auto mb-8">
