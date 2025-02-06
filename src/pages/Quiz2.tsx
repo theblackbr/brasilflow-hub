@@ -208,12 +208,12 @@ const Quiz2 = () => {
         )}
         <div className="animate-fadeIn">
           {renderStep()}
-          {currentStep > 0 && !isLoading && !showResults && !isLastStep && (
+          {currentStep > 0 && !isLoading && !showResults && (
             <NavigationButtons
               onBack={handleBack}
               onNext={handleNext}
               onSubmit={handleUserDataSubmit}
-              isLastStep={currentStep === 6}
+              isLastStep={isLastStep}
               canProceed={canProceed}
               isDataComplete={isDataComplete}
             />
