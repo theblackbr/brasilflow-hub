@@ -29,7 +29,7 @@ const NewsSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-[#FEF7CD]">
+    <section className="py-16 bg-primary">
       <div className="container mx-auto px-4">
         <div className="flex items-center gap-2 mb-8">
           <RssIcon className="w-6 h-6 text-[#F97316]" />
