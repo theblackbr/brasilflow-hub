@@ -33,21 +33,21 @@ export const WelcomeScreen = ({ onNext }: WelcomeScreenProps) => (
     <div className="space-y-6 mb-12 text-left">
       <div className="flex items-center gap-4">
         <Users className="w-8 h-8 text-primary flex-shrink-0" />
-        <p className="text-lg text-gray-700">
+        <p className="text-base md:text-lg text-gray-700">
           Comparem diferentes contas e escolham as que melhor atendem suas necessidades
         </p>
       </div>
       
       <div className="flex items-center gap-4">
         <DollarSign className="w-8 h-8 text-primary flex-shrink-0" />
-        <p className="text-lg text-gray-700">
+        <p className="text-base md:text-lg text-gray-700">
           Descubram benefícios exclusivos para brasileiros nos EUA
         </p>
       </div>
       
       <div className="flex items-center gap-4">
         <Award className="w-8 h-8 text-primary flex-shrink-0" />
-        <p className="text-lg text-gray-700">
+        <p className="text-base md:text-lg text-gray-700">
           Recebam relatórios personalizados com as melhores recomendações
         </p>
       </div>
