@@ -13,13 +13,13 @@ const ExchangeRateSection = () => {
       setLoading(true);
       setError(null);
       
-      const response = await fetch('https://v6.exchangerate-api.com/v6/YOUR_API_KEY/pair/USD/BRL');
+      const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
       if (!response.ok) {
         throw new Error('Falha ao buscar taxa de câmbio');
       }
       
       const data = await response.json();
-      setRate(data.conversion_rate);
+      setRate(data.rates.BRL);
       setLastUpdate(new Date().toLocaleTimeString());
     } catch (err) {
       setError("Erro ao atualizar cotação");
