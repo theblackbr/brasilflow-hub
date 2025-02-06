@@ -112,12 +112,12 @@ const Quiz2 = () => {
       case 1:
         return (
           <QuizQuestion
-            title="Há quanto tempo você está nos EUA?"
+            title="Qual é sua relação atual com os EUA?"
             options={[
-              "Menos de 1 ano",
-              "Entre 1 e 3 anos",
-              "Entre 3 e 5 anos",
-              "Mais de 5 anos"
+              "Moro nos EUA permanentemente",
+              "Viajo frequentemente a trabalho/negócios",
+              "Estilo nômade (alternando períodos)",
+              "Planejo me mudar em breve"
             ]}
             value={answers.tempoEUA}
             onChange={(value) => handleAnswerChange("tempoEUA", value)}
