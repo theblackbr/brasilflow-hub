@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Progress } from "@/components/ui/progress";
 import { QuizQuestion } from "@/components/quiz/QuizQuestion";
@@ -18,6 +17,7 @@ const Quiz2 = () => {
     objetivoFinanceiro: "",
     fonteRenda: "",
     appsFinanceiros: "",
+    dificuldades: "", // Added missing property
   });
   const [userData, setUserData] = useState<UserData>({
     nome: "",
@@ -102,7 +102,7 @@ const Quiz2 = () => {
     }
 
     if (showResults) {
-      return <QuizResults profile={calculateProfile(answers)} />;
+      return <QuizResults profile={calculateProfile(answers)} userData={userData} />;
     }
 
     switch (currentStep) {

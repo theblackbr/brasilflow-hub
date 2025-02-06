@@ -1,15 +1,16 @@
 
 import { Button } from "@/components/ui/button";
-import { ProfileResult } from "@/types/quiz";
+import { ProfileResult, UserData } from "@/types/quiz";
 import { motion } from "framer-motion";
 import { BadgeCheck, ArrowRight, CheckCircle } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 interface QuizResultsProps {
   profile: ProfileResult;
+  userData: UserData;
 }
 
-export const QuizResults = ({ profile }: QuizResultsProps) => (
+export const QuizResults = ({ profile, userData }: QuizResultsProps) => (
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -23,10 +24,51 @@ export const QuizResults = ({ profile }: QuizResultsProps) => (
       >
         <BadgeCheck className="w-12 h-12 text-primary" />
       </motion.div>
-      <h2 className="text-4xl font-bold text-gray-800">{profile.title}</h2>
+      <h2 className="text-4xl font-bold text-gray-800">
+        {userData.nome}, aqui está sua análise personalizada!
+      </h2>
       <p className="text-xl text-gray-600">{profile.description}</p>
     </div>
     
+    <motion.div 
+      className="space-y-6 bg-gradient-to-br from-primary/5 to-primary/10 p-8 rounded-xl border border-primary/20"
+      variants={{
+        hidden: { opacity: 0 },
+        show: {
+          opacity: 1,
+          transition: {
+            staggerChildren: 0.2
+          }
+        }
+      }}
+      initial="hidden"
+      animate="show"
+    >
+      <div className="flex items-center gap-6 mb-6">
+        <img 
+          src="/lovable-uploads/a83934bc-d45b-47a7-ad8b-352d600d0927.png"
+          alt="MonkeyMoney Logo"
+          className="h-12"
+        />
+        <Avatar className="w-16 h-16">
+          <AvatarImage 
+            src="/lovable-uploads/b0f01726-d9cf-4b1f-8311-6b57c6ca5547.png"
+            alt="MonkeyMoney Mascot"
+          />
+          <AvatarFallback>MM</AvatarFallback>
+        </Avatar>
+      </div>
+      
+      <h3 className="text-2xl font-bold text-gray-800">
+        Comece agora sua jornada financeira nos EUA!
+      </h3>
+      
+      <Button className="w-full md:w-auto group text-lg" size="lg">
+        Criar minha conta MonkeyMoney
+        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+      </Button>
+    </motion.div>
+
     <motion.div 
       className="space-y-6"
       variants={{
@@ -42,7 +84,7 @@ export const QuizResults = ({ profile }: QuizResultsProps) => (
       animate="show"
     >
       <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-        Recomendações para você:
+        {userData.nome}, veja suas recomendações personalizadas:
       </h3>
       <ul className="space-y-4">
         {profile.recommendations.map((rec, index) => (
@@ -65,29 +107,12 @@ export const QuizResults = ({ profile }: QuizResultsProps) => (
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5 }}
-      className="mt-12 bg-gradient-to-br from-primary/5 to-primary/10 p-8 rounded-xl border border-primary/20"
+      className="space-y-4"
     >
-      <div className="flex items-center gap-6 mb-6">
-        <img 
-          src="/lovable-uploads/a83934bc-d45b-47a7-ad8b-352d600d0927.png"
-          alt="MonkeyMoney Logo"
-          className="h-12"
-        />
-        <Avatar className="w-16 h-16">
-          <AvatarImage 
-            src="/lovable-uploads/b0f01726-d9cf-4b1f-8311-6b57c6ca5547.png"
-            alt="MonkeyMoney Mascot"
-          />
-          <AvatarFallback>MM</AvatarFallback>
-        </Avatar>
-      </div>
       <h3 className="text-2xl font-bold text-gray-800 mb-4">
-        Conheça a MonkeyMoney
+        Benefícios exclusivos da sua conta digital:
       </h3>
-      <p className="text-gray-600 mb-6">
-        A conta digital perfeita para brasileiros nos EUA. Simplifique sua vida financeira e aproveite benefícios exclusivos:
-      </p>
-      <ul className="space-y-4 mb-6">
+      <ul className="space-y-4">
         {[
           'Conta sem taxas mensais',
           'Transferências internacionais com as melhores taxas',
@@ -106,10 +131,6 @@ export const QuizResults = ({ profile }: QuizResultsProps) => (
           </motion.li>
         ))}
       </ul>
-      <Button className="w-full md:w-auto group" size="lg">
-        Criar minha conta MonkeyMoney
-        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-      </Button>
     </motion.div>
   </motion.div>
 );
