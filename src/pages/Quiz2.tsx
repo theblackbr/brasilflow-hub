@@ -276,4 +276,3 @@ const Quiz2 = () => {
 };
 
 export default Quiz2;
-

@@ -2,57 +2,57 @@
 import { QuizAnswer, ProfileResult } from "@/types/quiz";
 
 export const calculateProfile = (answers: QuizAnswer): ProfileResult => {
-  // Iniciante nos EUA
+  // Perfil Novo nos EUA
   if (answers.tempoEUA === "Menos de 1 ano") {
     return {
-      title: "Iniciante nos EUA",
-      description: "Você está começando sua jornada financeira nos EUA. É importante focar em construir uma base sólida.",
+      title: "Perfil Iniciante nos EUA",
+      description: "Você está começando sua jornada financeira nos EUA e precisa de uma solução completa e simplificada.",
       recommendations: [
-        "Abra uma conta em um banco tradicional americano",
-        "Comece a construir seu histórico de crédito",
-        "Aprenda sobre o sistema tributário americano",
-        "Mantenha um fundo de emergência"
-      ]
-    };
-  }
-  
-  // Investidor em Crescimento
-  if (answers.objetivoFinanceiro === "Investir em ações" || answers.appsFinanceiros === "Robinhood/TD Ameritrade") {
-    return {
-      title: "Investidor em Crescimento",
-      description: "Você já tem uma base financeira e está pronto para fazer seu dinheiro trabalhar para você.",
-      recommendations: [
-        "Diversifique seus investimentos",
-        "Considere abrir uma conta IRA",
-        "Aprenda sobre diferentes tipos de investimentos",
-        "Considere consultar um planejador financeiro"
+        "Abertura de conta sem SSN",
+        "Atendimento em português 24/7",
+        "Cartão de débito sem anuidade",
+        "App intuitivo em português"
       ]
     };
   }
 
-  // Empreendedor
-  if (answers.fonteRenda === "Empresário" || answers.objetivoFinanceiro === "Abrir um negócio") {
+  // Perfil Internacional
+  if (answers.objetivoFinanceiro === "Enviar dinheiro para o Brasil") {
     return {
-      title: "Empreendedor",
-      description: "Você tem um perfil empreendedor e busca oportunidades de negócios nos EUA.",
+      title: "Perfil Internacional",
+      description: "Você precisa de uma solução eficiente para movimentar dinheiro entre EUA e Brasil.",
       recommendations: [
-        "Consulte um contador especializado em pequenas empresas",
-        "Pesquise sobre diferentes estruturas empresariais (LLC, Corp, etc)",
-        "Construa uma rede de contatos profissionais",
-        "Mantenha registros financeiros organizados"
+        "Remessas internacionais com as melhores taxas",
+        "Câmbio competitivo",
+        "Transferências gratuitas nos EUA",
+        "Conta multi-moeda"
       ]
     };
   }
 
-  // Perfil Conservador
+  // Perfil Empreendedor
+  if (answers.fonteRenda === "Empresário" || answers.fonteRenda === "Trabalho autônomo") {
+    return {
+      title: "Perfil Empreendedor",
+      description: "Você precisa de uma solução bancária que atenda suas necessidades empresariais nos EUA.",
+      recommendations: [
+        "Conta PJ sem taxas mensais",
+        "Integração com ferramentas de contabilidade",
+        "Gestão financeira simplificada",
+        "Suporte especializado para empresas"
+      ]
+    };
+  }
+
+  // Perfil Digital
   return {
-    title: "Construtor de Patrimônio",
-    description: "Você está focado em construir uma base financeira sólida e sustentável nos EUA.",
+    title: "Perfil Digital",
+    description: "Você busca praticidade e eficiência em seus serviços financeiros.",
     recommendations: [
-      "Mantenha um orçamento detalhado",
-      "Estabeleça metas financeiras de curto e longo prazo",
-      "Pesquise sobre diferentes tipos de seguros",
-      "Planeje sua aposentadoria"
+      "Tudo em um só aplicativo",
+      "Cashback em compras",
+      "Transferências instantâneas",
+      "Gestão financeira inteligente"
     ]
   };
 };
