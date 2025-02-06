@@ -23,7 +23,7 @@ export const WelcomeScreen = ({ onNext }: WelcomeScreenProps) => (
       </span>
     </div>
 
-    <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+    <h1 className="text-3xl md:text-5xl font-bold text-gray-800 mb-6">
       Descubra as Melhores Soluções Financeiras para Brasileiros nos EUA
     </h1>
     <p className="text-xl text-gray-600 mb-12">
