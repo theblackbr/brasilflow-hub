@@ -24,7 +24,7 @@ export const WelcomeScreen = ({ onNext }: WelcomeScreenProps) => (
     </div>
 
     <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-      Descubra as Melhores Soluções Bancárias para Brasileiros nos EUA
+      Descubra as Melhores Soluções Financeiras para Brasileiros nos EUA
     </h1>
     <p className="text-xl text-gray-600 mb-12">
       Em poucos minutos, entendam quais contas digitais são ideais para seus perfis nos EUA e recebam recomendações personalizadas com os melhores benefícios para brasileiros.
