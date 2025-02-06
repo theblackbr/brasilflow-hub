@@ -6,6 +6,7 @@ import NewsletterSection from "@/components/NewsletterSection";
 import NewsSection from "@/components/NewsSection";
 import SponsorsSection from "@/components/SponsorsSection";
 import ExchangeRateSection from "@/components/ExchangeRateSection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -19,6 +20,7 @@ const Index = () => {
         <NewsletterSection />
         <ExchangeRateSection />
       </main>
+      <Footer />
     </div>
   );
 };
