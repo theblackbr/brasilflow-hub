@@ -29,7 +29,7 @@ const NewsSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-b from-[#FEF7CD] to-[#FFE29F]">
+    <section className="py-16 bg-[#FEF7CD]">
       <div className="container mx-auto px-4">
         <div className="flex items-center gap-2 mb-8">
           <RssIcon className="w-6 h-6 text-[#F97316]" />
@@ -39,7 +39,7 @@ const NewsSection = () => {
           {recentPosts.map((post, index) => (
             <Card 
               key={index} 
-              className="bg-white/90 backdrop-blur-sm border-transparent hover:border-[#F97316] transition-all duration-300 overflow-hidden group"
+              className="bg-white shadow-md border-transparent hover:border-[#F97316] transition-all duration-300 overflow-hidden group"
             >
               <div className="relative h-48 overflow-hidden">
                 <img 
