@@ -7,9 +7,10 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-white">MonkeyMoney</h3>
+            <h3 className="text-xl font-semibold mb-4 text-white">BrasilFlow</h3>
             <p className="text-sm leading-relaxed">
-              Sua conta digital nos Estados Unidos. Simples, rápida e sem complicações.
+              Sua solução completa para transferências internacionais. 
+              Conectando o Brasil ao mundo com segurança e praticidade.
             </p>
           </div>
           
@@ -18,15 +19,15 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center gap-2">
                 <Mail className="w-5 h-5 text-primary" />
-                <span>contato@monkeymoney.com</span>
+                <span>contato@brasilflow.com.br</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-5 h-5 text-primary" />
-                <span>+1 (555) 123-4567</span>
+                <span>0800 123 4567</span>
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-primary" />
-                <span>Miami, FL - USA</span>
+                <span>São Paulo, SP - Brasil</span>
               </li>
             </ul>
           </div>
@@ -41,17 +42,17 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#" className="hover:text-primary transition-colors">
-                  Termos de Uso
+                  Como Funciona
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-primary transition-colors">
-                  Política de Privacidade
+                  Taxas e Tarifas
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-primary transition-colors">
-                  FAQ
+                  Central de Ajuda
                 </a>
               </li>
             </ul>
@@ -59,7 +60,7 @@ const Footer = () => {
         </div>
         
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm">
-          <p>&copy; {new Date().getFullYear()} MonkeyMoney. Todos os direitos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} BrasilFlow. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
