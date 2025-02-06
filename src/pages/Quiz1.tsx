@@ -13,9 +13,15 @@ interface QuizAnswer {
   dificuldades: string;
 }
 
+interface ProfileResult {
+  title: string;
+  description: string;
+  recommendations: string[];
+}
+
 const Quiz1 = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const totalSteps = 6; // 5 perguntas + tela inicial
+  const totalSteps = 7; // 5 perguntas + tela inicial + tela de resultado
   const [answers, setAnswers] = useState<QuizAnswer>({
     tempoEUA: "",
     objetivoFinanceiro: "",
@@ -23,6 +29,62 @@ const Quiz1 = () => {
     appsFinanceiros: "",
     dificuldades: "",
   });
+
+  const calculateProfile = (answers: QuizAnswer): ProfileResult => {
+    // Iniciante nos EUA
+    if (answers.tempoEUA === "Menos de 1 ano") {
+      return {
+        title: "Iniciante nos EUA",
+        description: "Você está começando sua jornada financeira nos EUA. É importante focar em construir uma base sólida.",
+        recommendations: [
+          "Abra uma conta em um banco tradicional americano",
+          "Comece a construir seu histórico de crédito",
+          "Aprenda sobre o sistema tributário americano",
+          "Mantenha um fundo de emergência"
+        ]
+      };
+    }
+    
+    // Investidor em Crescimento
+    if (answers.objetivoFinanceiro === "Investir em ações" || answers.appsFinanceiros === "Robinhood/TD Ameritrade") {
+      return {
+        title: "Investidor em Crescimento",
+        description: "Você já tem uma base financeira e está pronto para fazer seu dinheiro trabalhar para você.",
+        recommendations: [
+          "Diversifique seus investimentos",
+          "Considere abrir uma conta IRA",
+          "Aprenda sobre diferentes tipos de investimentos",
+          "Considere consultar um planejador financeiro"
+        ]
+      };
+    }
+
+    // Empreendedor
+    if (answers.fonteRenda === "Empresário" || answers.objetivoFinanceiro === "Abrir um negócio") {
+      return {
+        title: "Empreendedor",
+        description: "Você tem um perfil empreendedor e busca oportunidades de negócios nos EUA.",
+        recommendations: [
+          "Consulte um contador especializado em pequenas empresas",
+          "Pesquise sobre diferentes estruturas empresariais (LLC, Corp, etc)",
+          "Construa uma rede de contatos profissionais",
+          "Mantenha registros financeiros organizados"
+        ]
+      };
+    }
+
+    // Perfil Conservador
+    return {
+      title: "Construtor de Patrimônio",
+      description: "Você está focado em construir uma base financeira sólida e sustentável nos EUA.",
+      recommendations: [
+        "Mantenha um orçamento detalhado",
+        "Estabeleça metas financeiras de curto e longo prazo",
+        "Pesquise sobre diferentes tipos de seguros",
+        "Planeje sua aposentadoria"
+      ]
+    };
+  };
 
   const handleNext = () => {
     if (currentStep < totalSteps - 1) {
@@ -67,6 +129,29 @@ const Quiz1 = () => {
       </RadioGroup>
     </div>
   );
+
+  const renderResults = () => {
+    const profile = calculateProfile(answers);
+    return (
+      <div className="space-y-8 animate-fadeIn">
+        <h2 className="text-4xl font-bold text-white mb-4">{profile.title}</h2>
+        <p className="text-xl text-gray-300 mb-8">{profile.description}</p>
+        <div className="space-y-4">
+          <h3 className="text-2xl font-semibold text-white mb-4">Recomendações para você:</h3>
+          <ul className="space-y-4">
+            {profile.recommendations.map((rec, index) => (
+              <li 
+                key={index}
+                className="flex items-start gap-3 bg-secondary/30 p-4 rounded-lg"
+              >
+                <span className="text-lg text-gray-200">{rec}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    );
+  };
 
   const renderStep = () => {
     switch (currentStep) {
@@ -148,10 +233,14 @@ const Quiz1 = () => {
           ],
           "dificuldades"
         );
+      case 6:
+        return renderResults();
       default:
         return null;
     }
   };
+
+  const isLastStep = currentStep === totalSteps - 1;
 
   return (
     <div className="min-h-screen bg-[#171717]">
@@ -166,7 +255,7 @@ const Quiz1 = () => {
         )}
         <div className="animate-fadeIn">
           {renderStep()}
-          {currentStep > 0 && (
+          {currentStep > 0 && !isLastStep && (
             <div className="flex justify-center gap-4 mt-12">
               <Button
                 variant="secondary"
@@ -178,7 +267,6 @@ const Quiz1 = () => {
               </Button>
               <Button
                 onClick={handleNext}
-                disabled={currentStep === totalSteps - 1}
                 className="animate-fadeIn"
               >
                 Próxima
@@ -193,3 +281,4 @@ const Quiz1 = () => {
 };
 
 export default Quiz1;
+
