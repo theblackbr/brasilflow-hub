@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Progress } from "@/components/ui/progress";
 import { QuizQuestion } from "@/components/quiz/QuizQuestion";
@@ -11,13 +12,13 @@ import { calculateProfile } from "@/utils/profileCalculator";
 
 const Quiz2 = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const totalSteps = 6;
+  const totalSteps = 6; // Total steps including welcome screen and user data form
   const [answers, setAnswers] = useState<QuizAnswer>({
     tempoEUA: "",
     objetivoFinanceiro: "",
     fonteRenda: "",
     appsFinanceiros: "",
-    dificuldades: "", // Added missing property
+    dificuldades: "",
   });
   const [userData, setUserData] = useState<UserData>({
     nome: "",
@@ -186,7 +187,7 @@ const Quiz2 = () => {
         {currentStep > 0 && !isLoading && !showResults && (
           <div className="max-w-2xl mx-auto mb-8">
             <Progress 
-              value={((currentStep - 1) / (totalSteps - 2)) * 100} 
+              value={(currentStep / (totalSteps - 1)) * 100} 
               className="animate-fadeIn"
             />
           </div>
