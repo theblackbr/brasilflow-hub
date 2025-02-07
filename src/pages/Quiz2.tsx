@@ -12,7 +12,7 @@ import { calculateProfile } from "@/utils/profileCalculator";
 
 const Quiz2 = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const totalSteps = 6; // Total steps including welcome screen and user data form
+  const totalSteps = 6;
   const [answers, setAnswers] = useState<QuizAnswer>({
     tempoEUA: "",
     objetivoFinanceiro: "",
@@ -62,8 +62,18 @@ const Quiz2 = () => {
   }, [isLoading]);
 
   const handleNext = () => {
-    if (currentStep < totalSteps - 1) {
-      setCurrentStep(prev => prev + 1);
+    // Only allow advancing if:
+    // 1. We're on the welcome screen (step 0)
+    // 2. We're on a question and have an answer
+    // 3. We're on the user data form and have complete data
+    const currentQuestionKey = getCurrentQuestionKey();
+    const hasAnswer = currentQuestionKey ? answers[currentQuestionKey] : true;
+    const isUserDataComplete = currentStep === 5 ? Boolean(userData.nome && userData.email && userData.telefone) : true;
+    
+    if ((currentStep === 0 || hasAnswer) && isUserDataComplete) {
+      if (currentStep < totalSteps - 1) {
+        setCurrentStep(prev => prev + 1);
+      }
     }
   };
 
@@ -73,12 +83,28 @@ const Quiz2 = () => {
     }
   };
 
+  const getCurrentQuestionKey = (): keyof QuizAnswer | null => {
+    switch (currentStep) {
+      case 1:
+        return "tempoEUA";
+      case 2:
+        return "objetivoFinanceiro";
+      case 3:
+        return "fonteRenda";
+      case 4:
+        return "appsFinanceiros";
+      default:
+        return null;
+    }
+  };
+
   const handleAnswerChange = (question: keyof QuizAnswer, value: string) => {
     setAnswers(prev => ({
       ...prev,
       [question]: value
     }));
     
+    // Auto-advance after selecting an answer
     if (currentStep > 0 && currentStep <= 4) {
       handleNext();
     }
@@ -177,8 +203,10 @@ const Quiz2 = () => {
     }
   };
 
+  const currentQuestionKey = getCurrentQuestionKey();
+  const hasCurrentAnswer = currentQuestionKey ? answers[currentQuestionKey] : true;
   const isLastStep = currentStep === totalSteps - 1;
-  const canProceed = currentStep !== 5 || Boolean(userData.nome && userData.email && userData.telefone);
+  const canProceed = currentStep === 0 || hasCurrentAnswer;
   const isDataComplete = Boolean(userData.nome && userData.email && userData.telefone);
 
   return (
