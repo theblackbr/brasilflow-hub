@@ -49,7 +49,7 @@ const NewsSection = () => {
                 />
               </div>
               <CardContent className="p-6">
-                <span className="inline-block px-3 py-1 rounded-full text-sm font-medium bg-[#FFC107] text-[#171717] mb-3">
+                <span className="inline-block px-3 py-1 rounded-full text-sm font-medium bg-[#ffde00] text-[#171717] mb-3">
                   {post.category}
                 </span>
                 <h3 className="text-xl font-semibold text-[#222222] mb-2 line-clamp-2">
@@ -58,7 +58,7 @@ const NewsSection = () => {
                 <span className="text-sm text-gray-600 block mb-4">{post.date}</span>
                 <Button 
                   variant="ghost" 
-                  className="group/btn text-[#171717] hover:text-[#171717] hover:bg-[#FFC107]"
+                  className="group/btn text-[#171717] hover:text-[#171717] hover:bg-[#ffde00]"
                 >
                   Ler mais
                   <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover/btn:translate-x-1" />
