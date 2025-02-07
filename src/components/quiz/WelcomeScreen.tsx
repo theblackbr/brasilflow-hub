@@ -14,7 +14,7 @@ export const WelcomeScreen = ({ onNext }: WelcomeScreenProps) => (
     className="max-w-2xl mx-auto w-full px-4 text-center animate-fadeIn"
   >
     <img 
-      src="/lovable-uploads/f3b6bf77-ca0d-497d-ad83-7d5ac8c06770.png" 
+      src="/lovable-uploads/dcd03955-ffcf-4d62-af9c-310d9ea0d6c5.png" 
       alt="Brasil na América Logo" 
       className="h-16 mx-auto mb-4"
     />
