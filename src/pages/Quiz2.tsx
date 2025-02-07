@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Progress } from "@/components/ui/progress";
 import { QuizQuestion } from "@/components/quiz/QuizQuestion";
@@ -62,12 +61,8 @@ const Quiz2 = () => {
   }, [isLoading]);
 
   const handleNext = () => {
-    // Only allow advancing if:
-    // 1. We're on the welcome screen (step 0)
-    // 2. We're on a question and have an answer
-    // 3. We're on the user data form and have complete data
     const currentQuestionKey = getCurrentQuestionKey();
-    const hasAnswer = currentQuestionKey ? answers[currentQuestionKey] : true;
+    const hasAnswer = currentQuestionKey ? Boolean(answers[currentQuestionKey]) : true;
     const isUserDataComplete = currentStep === 5 ? Boolean(userData.nome && userData.email && userData.telefone) : true;
     
     if ((currentStep === 0 || hasAnswer) && isUserDataComplete) {
@@ -104,7 +99,6 @@ const Quiz2 = () => {
       [question]: value
     }));
     
-    // Auto-advance after selecting an answer
     if (currentStep > 0 && currentStep <= 4) {
       handleNext();
     }
@@ -204,7 +198,7 @@ const Quiz2 = () => {
   };
 
   const currentQuestionKey = getCurrentQuestionKey();
-  const hasCurrentAnswer = currentQuestionKey ? answers[currentQuestionKey] : true;
+  const hasCurrentAnswer = currentQuestionKey ? Boolean(answers[currentQuestionKey]) : true;
   const isLastStep = currentStep === totalSteps - 1;
   const canProceed = currentStep === 0 || hasCurrentAnswer;
   const isDataComplete = Boolean(userData.nome && userData.email && userData.telefone);
