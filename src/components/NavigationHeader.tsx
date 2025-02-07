@@ -7,8 +7,12 @@ const NavigationHeader = () => {
     <header className="fixed w-full bg-[#171717]/90 backdrop-blur-lg border-b border-gray-800 z-50">
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between h-16">
-          <Link to="/" className="text-2xl font-bold text-white hover:text-primary transition-colors">
-            BrasilFlow
+          <Link to="/" className="flex items-center space-x-2 hover:opacity-90 transition-opacity">
+            <img 
+              src="/lovable-uploads/2910bdd7-5900-4251-b687-48a52b5ae248.png" 
+              alt="BrasilFlow Logo" 
+              className="h-8"
+            />
           </Link>
           
           <div className="hidden md:flex items-center space-x-8">
