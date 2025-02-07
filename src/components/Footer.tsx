@@ -7,10 +7,10 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-white">BrasilFlow</h3>
+            <h3 className="text-xl font-semibold mb-4 text-white">Brasil na América</h3>
             <p className="text-sm leading-relaxed">
               Sua solução completa para transferências internacionais. 
-              Conectando o Brasil ao mundo com segurança e praticidade.
+              Conectando o Brasil aos Estados Unidos com segurança e praticidade.
             </p>
           </div>
           
@@ -19,15 +19,15 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center gap-2">
                 <Mail className="w-5 h-5 text-primary" />
-                <span>contato@brasilflow.com.br</span>
+                <span>contato@brasilnaamerica.com</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-5 h-5 text-primary" />
-                <span>0800 123 4567</span>
+                <span>+1 (215) 555-0123</span>
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-primary" />
-                <span>São Paulo, SP - Brasil</span>
+                <span>1500 Market Street, Philadelphia, PA 19102</span>
               </li>
             </ul>
           </div>
@@ -60,7 +60,7 @@ const Footer = () => {
         </div>
         
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm">
-          <p>&copy; {new Date().getFullYear()} BrasilFlow. Todos os direitos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} Brasil na América. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
