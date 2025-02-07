@@ -9,8 +9,8 @@ const NavigationHeader = () => {
         <nav className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center space-x-2 hover:opacity-90 transition-opacity">
             <img 
-              src="/lovable-uploads/2910bdd7-5900-4251-b687-48a52b5ae248.png" 
-              alt="BrasilFlow Logo" 
+              src="/lovable-uploads/a83934bc-d45b-47a7-ad8b-352d600d0927.png" 
+              alt="Brasil na América Logo" 
               className="h-8"
             />
           </Link>
