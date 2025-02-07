@@ -32,14 +32,14 @@ const NewsSection = () => {
     <section className="py-16 bg-primary">
       <div className="container mx-auto px-4">
         <div className="flex items-center gap-2 mb-8">
-          <RssIcon className="w-6 h-6 text-white" />
-          <h2 className="text-3xl font-bold text-white">Novidades</h2>
+          <RssIcon className="w-6 h-6 text-[#333333]" />
+          <h2 className="text-3xl font-bold text-[#333333]">Novidades</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {recentPosts.map((post, index) => (
             <Card 
               key={index} 
-              className="bg-white shadow-md border-transparent hover:border-[#F97316] transition-all duration-300 overflow-hidden group"
+              className="bg-white shadow-md border-[#333333] hover:border-[#F97316] transition-all duration-300 overflow-hidden group"
             >
               <div className="relative h-48 overflow-hidden">
                 <img 
