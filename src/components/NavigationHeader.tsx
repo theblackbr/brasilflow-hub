@@ -11,7 +11,7 @@ const NavigationHeader = () => {
             <img 
               src="/lovable-uploads/f3b6bf77-ca0d-497d-ad83-7d5ac8c06770.png" 
               alt="Brasil na América Logo" 
-              className="h-8"
+              className="h-16"
             />
           </Link>
           
