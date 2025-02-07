@@ -12,7 +12,7 @@ import { calculateProfile } from "@/utils/profileCalculator";
 
 const Quiz2 = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const totalSteps = 6; // Total steps including welcome screen and user data form
+  const totalSteps = 6;
   const [answers, setAnswers] = useState<QuizAnswer>({
     tempoEUA: "",
     objetivoFinanceiro: "",
@@ -142,10 +142,8 @@ const Quiz2 = () => {
           <QuizQuestion
             title="Você tem empresa nos EUA?"
             options={[
-              "Sim, tenho uma LLC",
-              "Sim, tenho outra estrutura",
-              "Não, mas pretendo abrir",
-              "Não tenho interesse"
+              "Sim",
+              "Não"
             ]}
             value={answers.fonteRenda}
             onChange={(value) => handleAnswerChange("fonteRenda", value)}
@@ -211,3 +209,4 @@ const Quiz2 = () => {
 };
 
 export default Quiz2;
+
