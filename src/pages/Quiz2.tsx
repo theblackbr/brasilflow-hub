@@ -86,8 +86,8 @@ const Quiz2 = () => {
       return;
     }
 
-    if ((currentStep === 0 || hasAnswer) && isUserDataComplete) {
-      if (currentStep < totalSteps - 1) {
+    if (currentStep < totalSteps - 1) {
+      if (currentStep === 0 || hasAnswer) {
         setCurrentStep(prev => prev + 1);
       }
     }
