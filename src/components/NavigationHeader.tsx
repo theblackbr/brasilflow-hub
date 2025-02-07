@@ -9,7 +9,7 @@ const NavigationHeader = () => {
         <nav className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center space-x-2 hover:opacity-90 transition-opacity">
             <img 
-              src="/lovable-uploads/a83934bc-d45b-47a7-ad8b-352d600d0927.png" 
+              src="/lovable-uploads/f3b6bf77-ca0d-497d-ad83-7d5ac8c06770.png" 
               alt="Brasil na América Logo" 
               className="h-8"
             />
