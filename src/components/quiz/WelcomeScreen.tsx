@@ -13,9 +13,11 @@ export const WelcomeScreen = ({ onNext }: WelcomeScreenProps) => (
     animate={{ opacity: 1 }}
     className="max-w-2xl mx-auto w-full px-4 text-center animate-fadeIn"
   >
-    <span className="text-xs font-medium text-primary block mb-4">
-      BrasilFlow
-    </span>
+    <img 
+      src="/lovable-uploads/f3b6bf77-ca0d-497d-ad83-7d5ac8c06770.png" 
+      alt="Brasil na América Logo" 
+      className="h-16 mx-auto mb-4"
+    />
 
     <div className="inline-block border-2 border-primary rounded-full px-4 py-1 mb-6">
       <span className="text-sm font-medium text-gray-800">
