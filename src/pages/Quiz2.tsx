@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Progress } from "@/components/ui/progress";
 import { QuizQuestion } from "@/components/quiz/QuizQuestion";
@@ -8,6 +9,7 @@ import { LoadingScreen } from "@/components/quiz/LoadingScreen";
 import { NavigationButtons } from "@/components/quiz/NavigationButtons";
 import { QuizAnswer, UserData } from "@/types/quiz";
 import { calculateProfile } from "@/utils/profileCalculator";
+import { useToast } from "@/hooks/use-toast";
 
 const Quiz2 = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -28,6 +30,7 @@ const Quiz2 = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState("");
   const [showResults, setShowResults] = useState(false);
+  const { toast } = useToast();
 
   const loadingMessages = [
     "Analisando suas respostas...",
@@ -65,6 +68,24 @@ const Quiz2 = () => {
     const hasAnswer = currentQuestionKey ? Boolean(answers[currentQuestionKey]) : true;
     const isUserDataComplete = currentStep === 5 ? Boolean(userData.nome && userData.email && userData.telefone) : true;
     
+    if (currentStep > 0 && currentStep < 5 && !hasAnswer) {
+      toast({
+        title: "Atenção",
+        description: "Por favor, selecione uma opção antes de continuar.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (currentStep === 5 && !isUserDataComplete) {
+      toast({
+        title: "Atenção",
+        description: "Por favor, preencha todos os campos antes de continuar.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     if ((currentStep === 0 || hasAnswer) && isUserDataComplete) {
       if (currentStep < totalSteps - 1) {
         setCurrentStep(prev => prev + 1);
@@ -114,6 +135,12 @@ const Quiz2 = () => {
   const handleUserDataSubmit = () => {
     if (userData.nome && userData.email && userData.telefone) {
       setIsLoading(true);
+    } else {
+      toast({
+        title: "Atenção",
+        description: "Por favor, preencha todos os campos antes de continuar.",
+        variant: "destructive",
+      });
     }
   };
 
